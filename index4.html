@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Effendy | Portfolio</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Teko & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --bg-deep: #121019;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --accent-gold: #e6b821;
+            --accent-rose: #f759ab;
+            --text-main: #a8d1f9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #18122b 0%, #1e1b4b 50%, #0f172a 100%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1.5px;
+        }
+
+        /* Navbar Glassmorphism */
+        .navbar {
+            background: rgba(18, 16, 25, 0.8) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .navbar-brand {
+            color: var(--accent-gold) !important;
+            font-size: 1.6rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        .nav-link {
+            color: var(--text-main) !important;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 150px 0 100px 0;
+            position: relative;
+        }
+        .hero-glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            filter: blur(90px);
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .profile-img-actual {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            object-position: center 25%;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Progress Bars Soft Pastel */
+        .progress {
+            background-color: rgba(255, 255, 255, 0.05);
+            height: 8px;
+            border-radius: 4px;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Pastel Buttons */
+        .btn-pastel-primary {
+            background: rgba(212, 175, 55, 0.15);
+            color: #fde047;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-pastel-primary:hover {
+            background: var(--accent-gold);
+            color: #121019;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .btn-pastel-secondary {
+            background: rgba(244, 114, 182, 0.1);
+            color: #f472b6;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-pastel-secondary:hover {
+            background: var(--accent-rose);
+            color: #121019;
+            box-shadow: 0 0 20px rgba(244, 114, 182, 0.4);
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        footer {
+            background: rgba(10, 8, 15, 0.9);
+            border-top: 1px solid var(--glass-border);
+            padding: 30px 0;
+        }
+        /* Efek Animasi Fade-in Halus Saat Halaman Dimuat */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+    /* Terapkan animasi pada Hero Section atau Glass Card utama */
+    .hero-section .glass-card {
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    /* Efek animasi dengan jeda untuk kartu bagian lainnya */
+    .glass-card {
+        animation: fadeInUp 1.5s ease-out forwards;
+    opacity: 0; /* Mulai dengan transparan */
+    }
+    html {
+    scroll-behavior: smooth; /* Bikin halaman bergeser mulus saat menu diklik */
+}
+    </style>
+</head>
+<!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Mutlak Pindah Active -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Hapus kelas active dari semua menu
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Tambahkan kelas active ke menu yang baru diklik
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">FERNANDO.ARCHIVE</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item"><a class="nav-link active" href="#home" onclick="pindahAktif('home')">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about" onclick="pindahAktif('about')">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills" onclick="pindahAktif('skills')">Keahlian</a></li>
+                <li class="nav-item"><a class="nav-link" href="#hobbies-quote" onclick="pindahAktif('hobbies-quote')">Hobi</a></li> <!-- Menu baru kita -->
+                <li class="nav-item"><a class="nav-link" href="#contact" onclick="pindahAktif('contact')">Kontak</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Glassmorphism & History Vibe) -->
+    <section id="home" class="hero-section text-center">
+        <div class="hero-glow"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            
+            <div class="glass-card p-4 p-md-5 mx-auto" style="max-width: 700px;">
+                <div class="profile-container mb-4">
+                    <img src="DSC_6819.jpg" alt="Fernando Effendy" class="profile-img-actual">
+                </div>
+                
+                <p class="mb-2 text-uppercase" style="font-family: 'Teko', sans-serif; font-size: 24px; color: var(--accent-gold); letter-spacing: 2px;">
+                    Welcome to my digital space.
+                </p>
+
+                <h1 class="display-5 fw-bold text-white mb-2" style="font-size: 3.2rem; text-shadow: 0 0 20px rgba(73, 127, 207, 0.2);">
+                    I'm FERNANDO EFFENDY
+                </h1>
+                <p class="mb-2 text-uppercase" style="font-family: 'Teko', sans-serif; font-size: 24px; color: var(--accent-gold); letter-spacing: 2px;">
+                    Bridging digital systems, history, and visual arts.
+                </p>
+
+                <p class="text-secondary mb-4" style="font-size: 1rem;"><i class="bi bi-geo-alt-fill text-danger"></i> Batam, Kepulauan Riau</p>
+                
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#about" class="btn btn-pastel-primary">Jelajahi Arsip</a>
+                    <a href="#contact" class="btn btn-pastel-secondary">Hubungi Saya</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tentang Saya / Sejarah -->
+    <section id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="glass-card p-4 p-md-5">
+                        <h2 class="text-white mb-4" style="font-size: 2.5rem;">TENTANG <span style="color: var(--accent-gold);">SAYA</span></h2>
+                        <p class="text-secondary fs-6 lh-lg mb-0">
+                            Halo! Saya Fernando Effendy, seorang mahasiswa jurusan Sistem Informasi di Universitas Internasional Batam. Memiliki ketertarikan mendalam dalam memadukan teknologi modern, estetika digital, serta eksplorasi sejarah regional. Website portofolio ini dirancang layaknya ruang arsip digital interaktif yang bersih dan elegan. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minat & Keterampilan -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="text-white text-center mb-5" style="font-size: 2.5rem;">MINAT & <span style="color: var(--accent-rose);">KEAHLIAN</span></h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-3" style="color: var(--accent-gold);"><i class="bi bi-journal-bookmark-fill"></i> Minat & Fokus Utama</h4>
+                        <ul class="list-unstyled text-secondary mb-0 d-flex flex-column gap-3">
+                            <li><i class="bi bi-chevron-right text-warning"></i> Pengembangan Web Front-End Modern</li>
+                            <li><i class="bi bi-chevron-right text-warning"></i> Arsip & Sejarah Regional Nusantara</li>
+                            <li><i class="bi bi-chevron-right text-warning"></i> UI/UX Design & Soft Aesthetics</li>
+                            <li><i class="bi bi-chevron-right text-warning"></i> Kecepatan & Logika Permainan Rubik (Speedcubing)</li>
+                            <li><i class="bi bi-chevron-right text-warning"></i> Astrofotografi & Pemetaan Langit</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-3" style="color: var(--accent-rose);"><i class="bi bi-code-slash"></i> Keterampilan Teknis</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1 small text-secondary">
+                                <span>HTML5 / CSS3 / JavaScript / Python</span>
+                                <span class="text-warning">90%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1 small text-secondary">
+                                <span>Bootstrap 5 & Responsive Layout</span>
+                                <span class="text-warning">85%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 85%;"></div></div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between mb-1 small text-secondary">
+                                <span>Digital Curation & UI Editing</span>
+                                <span class="text-warning">88%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 88%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Bagian 2 & 3: Kutipan Filosofis & Hobi Khusus (Astrofotografi & Speedcubing) -->
+    <section id="hobbies-quote">
+        <div class="container">
+            
+            <!-- Bagian 2: Kutipan Filosofis / Tagline Arsip -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <div class="glass-card p-4 p-md-4" style="border-left: 4px solid var(--accent-gold);">
+                        <p class="mb-0 fst-italic text-secondary" style="font-size: 1.05rem; letter-spacing: 0.5px;">
+                            "Menjembatani masa lalu melalui jejak digital, merancang masa depan melalui logika sistem dan teknologi."
+                        </p>
+                        <span class="d-block mt-2 small" style="color: var(--accent-gold); font-family: 'Teko', sans-serif; font-size: 20px; letter-spacing: 1px;">— FERNANDO EFFENDY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bagian 3: Detail Hobi Unik (Astrophotography & Speedcubing) -->
+            <h2 class="text-white text-center mb-4" style="font-size: 2.3rem;">HOBI & <span style="color: var(--accent-gold);">EKSPLORASI</span></h2>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Hobi 1: Astrofotografi (Diubah jadi 2 gambar) -->
+<div class="col-md-5">
+    <div class="glass-card p-4 h-100 text-center text-md-start d-flex flex-column justify-content-between">
+        <div>
+            
+            <!-- BAGIAN INI YANG DIGANTI: Menjadi dua gambar bersebelahan -->
+            <div class="mb-3 d-flex gap-3 justify-content-center justify-content-md-start">
+                <!-- Foto Pertama -->
+                <img src="Bulan.jpeg" alt="Hasil Astrofotografi Bulan" style="width: 48%; height: auto; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                
+                <!-- Foto Kedua -->
+                <img src="Bintang.jpeg" alt="Hasil Astrofotografi Milky Way" style="width: 48%; height: auto; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            </div>
+            <!-- AKHIR BAGIAN YANG DIGANTI -->
+
+            <h4 class="text-white mb-2" style="font-size: 1.8rem;">Astrofotografi ⏾⋆</h4>
+    
+                            <p class="text-secondary small lh-base">
+                                Mengabadikan detail kawah bulan dan keindahan bintang melalui eksperimen pengaturan kamera manual. Melatih ketelitian, kesabaran, dan sudut pandang visual estetika alam semesta.
+                            </p>
+                        </div>
+                        <span class="badge align-self-start mt-3" style="background: rgba(212, 175, 55, 0.15); color: var(--accent-gold); border: 1px solid rgba(212, 175, 55, 0.3);">Eksplorasi Langit Malam</span>
+                    </div>
+                </div>
+
+                <!-- Hobi 2: Speedcubing -->
+                <div class="col-md-5">
+                    <div class="glass-card p-4 h-100 text-center text-md-start d-flex flex-column" style="height: auto;">
+        
+                        <!-- Gambar Rubik Jejer -->
+                        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-bottom: 1rem;">
+                            <img src="rubik.jpeg" alt="Rubik 1" style="width: 300px; height: 165px; object-fit: cover; border-radius: 12px;">
+                            <img src="RUBIK.jpg" alt="Rubik 2" style="width: 300px; height: 165px; object-fit: cover; border-radius: 12px;">
+                        </div>
+
+                        <!-- Judul -->
+                        <h4 class="text-white mb-2" style="font-size: 1.8rem;">Speedcubing (Rubik) 🧊</h4>
+
+                        <!-- Paragraf -->
+                        <p class="text-secondary small lh-base mb-3">
+                        Memecahkan teka-teki logika Rubik dengan mengandalkan kecepatan tangan, pola algoritma, dan pemecahan masalah cepat (*problem solving*) yang sejalan dengan dunia Sistem Informasi.
+                        </p>
+
+                        <!-- Badge di dalam card -->
+                        <span class="badge align-self-start mt-auto" style="background: rgba(156, 128, 45, 0.05); border: 1px solid rgba(30, 77, 147, 0.4); backdrop-filter: blur(5px); padding: 8px 16px; border-radius: 50px; font-weight: normal; color: #0ad2f5;">
+                            Logika & Kecepatan
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact">
+        <div class="container text-center">
+            <div class="glass-card p-4 p-md-5 mx-auto" style="max-width: 700px;">
+                <h2 class="text-white mb-3" style="font-size: 2.5rem;">MARI <span style="color: var(--accent-gold);">TERHUBUNG</span></h2>
+                <p class="text-secondary mb-4">Tertarik berkolaborasi dalam proyek web atau diskusi sejarah digital? Silakan hubungi melalui saluran di bawah:</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="mailto:fernandoeffendy24@gmail.com" class="btn btn-pastel-primary"><i class="bi bi-envelope"></i> Kirim Gmail</a>
+                    <a href="https://wa.me/085668834094" class="btn btn-pastel-secondary"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-secondary">
+        <div class="container">
+            <p class="mb-0 small">&copy; 2026 Fernando Effendy. All Rights Reserved. Digital Archive Theme.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
